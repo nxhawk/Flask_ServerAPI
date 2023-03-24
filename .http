@@ -20,4 +20,4 @@ Content-Type: application/json
 ###
 GET http://127.0.0.1:3030/api/profile
 Content-Type: application/json
-Authorization: hello
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5oYXRoYW8iLCJlbWFpbCI6Im5ndXllbm5oYXQiLCJleHAiOjE2OTI2MzYwMTYsImlhdCI6MTY3OTY3NjAxNn0.WS5DN76JhWGY2z1Lo6ICecAytK4S5W5tKsGKwZ4BMDQ
