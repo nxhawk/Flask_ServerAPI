@@ -1,0 +1,23 @@
+POST http://127.0.0.1:3030/api/signup
+Content-Type: application/json
+
+{
+  "username":"nhathao",
+  "email":"nguyennhat",
+  "password":"123"
+}
+
+###
+POST http://127.0.0.1:3030/api/login
+Content-Type: application/json
+
+{
+  "username":"nhathao",
+  "email":"nguyennhat",
+  "password":"123"
+}
+
+###
+GET http://127.0.0.1:3030/api/profile
+Content-Type: application/json
+Authorization: hello
