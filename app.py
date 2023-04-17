@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 from dotenv import load_dotenv
 from mongoengine import connect
 import logging
@@ -20,6 +20,13 @@ server_api = Flask(__name__)
 
 server_api.register_blueprint(auth_routes)
 server_api.register_blueprint(post_routes)
+
+
+@server_api.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
+
 
 CORS(server_api)
 
