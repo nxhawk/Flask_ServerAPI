@@ -1,6 +1,6 @@
 from datetime import datetime
 import json
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, render_template
 
 from models.posts import Post
 from middleware.authen import token_required
@@ -10,6 +10,34 @@ post_routes = Blueprint("post_routes", __name__, url_prefix='/api/v1')
 
 
 @post_routes.route('/posts', methods=['GET'])
+def posts_view():
+    return render_template("posts.html")
+
+
+@post_routes.route('/getallposts', methods=['GET'])
+@token_required
+def get_allPost(*args, **kwargs):
+    posts = []
+    for user in User.objects:
+        if user['posts']:
+            for post in user['posts']:
+                posts.append({
+                    'author': user["username"],
+                    'id': str(post['id']),
+                    'post_name': post['post_name'],
+                    'description': post['description'],
+                    'link_image': post['link_image'],
+                    'created_time': datetime.timestamp(post['created_time']),
+                    'updated_time': datetime.timestamp(post['updated_time'])
+                })
+    return jsonify({
+        "posts": posts,
+        "length": len(posts),
+        "status": True
+    })
+
+
+@post_routes.route('/getposts', methods=['GET'])
 @token_required
 def get_Posts(*args, **kwargs):
     user = kwargs['user_info']
@@ -25,8 +53,9 @@ def get_Posts(*args, **kwargs):
         for post in user['posts']
     ] if len(user['posts']) > 0 else []
     return jsonify({
-        'Posts': data,
-        'length': len(data)
+        'posts': data,
+        'length': len(data),
+        'status': True
     })
 
 
