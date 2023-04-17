@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, render_template
 from models.users import User
 from middleware.authen import check_password, bcrypt_password, create_token, token_required
 import json
@@ -13,6 +13,11 @@ def home_api():
     })
 
 
+@auth_routes.route('/signup', methods=['GET'])
+def signup_views():
+    return render_template('signup.html', title="Register Page", fileJS="signup")
+
+
 @auth_routes.route('/signup', methods=["POST"])
 def sign_up():
     try:
@@ -22,7 +27,8 @@ def sign_up():
         password = bcrypt_password(payload.get('password'))
         if not username or not email or not password:
             return jsonify({
-                'message': "hmmm...."
+                'message': "You must fill all",
+                'status': False
             })
         new_user = User(
             username=username,
@@ -35,12 +41,18 @@ def sign_up():
                 'username': payload.get('username'),
                 'email': payload.get('email')
             }),
-            'message': 'signed successfully!!!'
+            'message': 'Register successfully, Hello new user',
+            "status": True
         })
     except Exception as e:
-        print(e)
+        if e.__class__.__name__ == "NotUniqueError":
+            return jsonify({
+                'message': 'Email or Username is already existed!',
+                'status': False
+            })
         return jsonify({
-            'message': 'some thing wrong!'
+            'message': 'Some thing wrong! Try signup again',
+            "status": False
         })
 
 
@@ -59,15 +71,22 @@ def login():
                 'username': username,
                 'email': user['email']
             }),
-            'message': 'ok login'
+            'message': 'Login successfully, Hello guy',
+            "status": True
         })
     except:
         return jsonify({
-            'message': 'dont have account'
+            'message': 'Some thing wrong, try login again!',
+            "status": False
         })
 
 
-@auth_routes.route('/profile', methods=["GET"])
+@auth_routes.route('/login', methods=['GET'])
+def login_views():
+    return render_template('login.html', title="Login Page", fileJS="login")
+
+
+@auth_routes.route('/getprofile', methods=["GET"])
 @token_required
 def profile(*args, **kwargs):
     user = kwargs.get('user_info')
@@ -75,5 +94,11 @@ def profile(*args, **kwargs):
     del user_profile['_id']
     del user_profile['password']
     return jsonify({
-        'data': user_profile
+        'message': user_profile,
+        'status': True
     })
+
+
+@auth_routes.route('/profile', methods=["GET"])
+def profile_views():
+    return render_template("profile.html")
