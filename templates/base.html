@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{title}}</title>
+    <meta name="description" content="Login - Register Template" />
+    <meta name="author" content="Lorenzo Angelino aka MrLolok" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <style>
+      body {
+        background-color: #303641;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% block main %} {% endblock %}
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify-es.min.js"
+      integrity="sha512-ErDF5EW83VCBin+at9A86ljkrUA48bc3aMpS6a4Qc7Z29FN6+/U++G9GZWBLbSwto93sO7D+R5xx8kbblSlC3A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.js"
+      integrity="sha512-ZHzbWDQKpcZxIT9l5KhcnwQTidZFzwK/c7gpUUsFvGjEsxPusdUCyFxjjpc7e/Wj7vLhfMujNx7COwOmzbn+2w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/{}.js'.format(fileJS)) }}"></script>
+  </body>
+</html>
