@@ -14,7 +14,6 @@ Content-Type: application/json
 
 {
   "username":"nhathao",
-  "email":"nguyennhat",
   "password":"123"
 }
 
@@ -26,17 +25,17 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5oYXRoYW8i
 ###
 POST http://127.0.0.1:3030/api/v1/newpost
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5oYXRoYW8iLCJlbWFpbCI6Im5ndXllbm5oYXQiLCJleHAiOjE2OTI3MjM0NzcsImlhdCI6MTY3OTc2MzQ3N30.zwlduKCPmzHSIpfJuTi9732SVNmgtUExHxBkT0Xz-zk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5oYXRoYW8iLCJlbWFpbCI6Im5ndXllbm5oYXQiLCJleHAiOjE2OTQ3MDUzMTIsImlhdCI6MTY4MTc0NTMxMn0.6g-NtjHCY2huk4KQz0WAdFAdSejPj5notRRbCW0x4T4
 
 {
-  "post_name":"New Post 2",
-  "description":"Toi co 2 uoc mo, uoc mo chi la uoc mo"
+  "post_name":"New Post 1",
+  "description":"Toi co 1 uoc mo, uoc mo chi la uoc mo"
 }
 
 ###
-GET http://127.0.0.1:3030/api/v1/posts
+GET http://127.0.0.1:3030/api/v1/getposts
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5oYXRoYW8iLCJlbWFpbCI6Im5ndXllbm5oYXQiLCJleHAiOjE2OTI3MjM0NzcsImlhdCI6MTY3OTc2MzQ3N30.zwlduKCPmzHSIpfJuTi9732SVNmgtUExHxBkT0Xz-zk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5oYXRoYW8iLCJlbWFpbCI6Im5ndXllbm5oYXQiLCJleHAiOjE2OTQ3MDUzMTIsImlhdCI6MTY4MTc0NTMxMn0.6g-NtjHCY2huk4KQz0WAdFAdSejPj5notRRbCW0x4T4
 
 ###
 DELETE http://127.0.0.1:3030/api/v1/posts/641f2835faeee9feb8e4d1ee
