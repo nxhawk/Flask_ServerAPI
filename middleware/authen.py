@@ -20,7 +20,7 @@ def token_required(f):
             token = request.headers['Authorization']
 
         if not token:
-            return jsonify({'message': "token missing!"}), 401
+            return jsonify({'message': "token missing!", "status": False}), 401
         try:
             data = jwt.decode(token, SECRET_JWT, algorithms=['HS256'])
             user = User.objects.get(
@@ -32,7 +32,8 @@ def token_required(f):
             kwargs['user_info'] = user
         except:
             return jsonify({
-                'message': 'Check JWT token error !!'
+                'message': 'Check JWT token error !!',
+                "status": False
             }), 401
         return f(*args, **kwargs)
 
