@@ -76,12 +76,14 @@ def add_newPost(*args, **kwargs):
         User.objects(id=user['id']).update_one(push__posts=saved_Post)
 
         return jsonify({
-            "message": "new post ok!"
+            "message": "new post ok!",
+            "status": True
         })
     except Exception as e:
         print(e)
         return jsonify({
-            'message': "some thing wrong"
+            'message': "some thing wrong",
+            "status": False
         })
 
 
